@@ -33,9 +33,10 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal = "kitty"
+local editor = "nvim"
+local terminal = "ghostty"
 local fileManager = "nautilus"
-local menu = "rofi -show drun"
+local menu = "rofi -show drun -show-icons -sidebar-mode -theme ~/.config/rofi/config.rasi -display-drun ' 󰍉 '"
 
 -------------------
 ---- AUTOSTART ----
@@ -47,8 +48,8 @@ local menu = "rofi -show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("hypridle")
+	hl.exec_cmd("hyprpaper & hypridle")
+	hl.exec_cmd("/home/damet/.cargo/bin/wayle panel start &")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 20")
 	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
 end)
@@ -61,6 +62,7 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("EDITOR", editor)
 
 -----------------------
 ----- PERMISSIONS -----
@@ -260,6 +262,18 @@ hl.bind(secondMod .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 
+local screenshotPath = "$HOME/Pictures/Screenshots"
+
+hl.bind(
+    mainMod .. " + F1",
+    hl.dsp.exec_cmd("wayle panel settings")
+)
+hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("hyprshot -m window -o " .. screenshotPath))
+hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd("hyprshot -m output -o " .. screenshotPath))
+hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd("hyprshot -m region -o " .. screenshotPath))
+
+hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("swaync-client -t -sw"))
+
 hl.bind(
 	mainMod .. " + M",
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
@@ -376,7 +390,14 @@ hl.window_rule({
 	float = true,
 })
 
-for i = 1, 4 do
+hl.window_rule({
+	match = {
+		class = "com.wayle.settings"
+	},
+	float = true
+})
+
+for i = 1, 5 do
 	hl.workspace_rule({
 		workspace = tostring(i),
 		monitor = "DP-1",
@@ -384,7 +405,7 @@ for i = 1, 4 do
 	})
 end
 
-for i = 5, 8 do
+for i = 6, 10 do
 	hl.workspace_rule({
 		workspace = tostring(i),
 		monitor = "HDMI-A-1",
