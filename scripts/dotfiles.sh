@@ -1,5 +1,5 @@
 #!/bin/bash
-cp -r ~/.config/hypr/ ~/dotfiles/
+cp -r ~/.config/hypr/ ~/dotfiles/config/
 
 cd ~/dotfiles/
 git add --all
