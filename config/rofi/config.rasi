@@ -172,3 +172,5 @@ configuration {
 /* @theme "/home/damet/.config/rofi/themes/onedark-darker.rasi" */
 
 /* @theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi" */
+
+@theme "/home/damet/.config/rofi/themes/onedark.rasi"
