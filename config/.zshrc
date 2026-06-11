@@ -31,6 +31,8 @@ fi
 unset rc
 . "$HOME/.cargo/env"
 
+export TERMINAL=ghostty
+
 export MOZ_ENABLE_WAYLAND=1
 
 # opencode

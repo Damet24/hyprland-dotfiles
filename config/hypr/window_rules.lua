@@ -54,3 +54,9 @@ for i = 6, 10 do
 		persistent = true,
 	})
 end
+
+hl.window_rule({
+	match = {
+		class = "kitty",
+	},
+})
