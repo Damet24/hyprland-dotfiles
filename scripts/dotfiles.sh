@@ -1,13 +1,11 @@
 #!/bin/bash
 
-DOTFILES=~/dotfiles/config/
-
-cp -r ~/.config/hypr/ $DOTFILES
-cp -r ~/.config/rofi/ $DOTFILES
-cp -r ~/.config/kitty/ $DOTFILES
-cp ~/.config/starship.toml $DOTFILES
-cp ~/.zshrc $DOTFILES
-cp ~/.config/ghostty/ $DOTFILES 
+cp -r ~/.config/hypr/ ~/dotfiles/config/
+cp -r ~/.config/rofi/ ~/dotfiles/config/
+cp -r ~/.config/kitty/ ~/dotfiles/config/
+cp ~/.config/starship.toml ~/dotfiles/config/
+cp ~/.zshrc ~/dotfiles/config/
+cp ~/.config/ghostty/ ~/dotfiles/config/ 
 
 cd ~/dotfiles/
 git add --all
