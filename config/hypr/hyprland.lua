@@ -1,23 +1,17 @@
--- Hyprland main configuration
--- Each concern is split into its own module for clarity
+local Config = require("core.config_loader")
 
-require("monitors")
-require("programs")
-require("env")
-require("autostart")
-require("settings")
-require("animations")
-require("layouts")
-require("input")
-require("window_rules")
-require("keybinds")
+Config.load_programs(require("config.programs"))
+Config.load_env(require("config.env"))
+Config.load_monitors(require("config.monitors"))
+Config.load_settings(require("config.settings"))
+Config.load_animations(require("config.animations"))
+Config.load_layouts(require("config.layouts"))
+Config.load_input(require("config.input"))
+Config.load_autostart(require("config.autostart"))
 
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- hl.config({
---   ecosystem = {
---     enforce_permissions = true,
---   },
--- })
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
--- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
+local Binds = require("core.bind_manager")
+Binds.register_plugin({ name = "System", keys = require("config.keybinds") })
+
+local Plugins = require("core.loader")
+Plugins.setup({ import = "plugins" })
+Binds.apply()
