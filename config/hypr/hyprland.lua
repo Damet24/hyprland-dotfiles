@@ -48,7 +48,7 @@ local menu = "rofi -show drun -show-icons -sidebar-mode -theme ~/.config/rofi/co
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprpaper & hypridle")
+	hl.exec_cmd("hyprpaper & hypridle & hyprsunset &")
 	hl.exec_cmd("/home/damet/.cargo/bin/wayle panel start &")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 20")
 	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
@@ -264,15 +264,13 @@ hl.bind(mainMod .. " + W", hl.dsp.window.close())
 
 local screenshotPath = "$HOME/Pictures/Screenshots"
 
-hl.bind(
-    mainMod .. " + F1",
-    hl.dsp.exec_cmd("wayle panel settings")
-)
+hl.bind(mainMod .. " + F1", hl.dsp.exec_cmd("wayle panel settings &"))
 hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("hyprshot -m window -o " .. screenshotPath))
 hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd("hyprshot -m output -o " .. screenshotPath))
 hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd("hyprshot -m region -o " .. screenshotPath))
 
 hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
 
 hl.bind(
 	mainMod .. " + M",
@@ -392,9 +390,9 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		class = "com.wayle.settings"
+		class = "com.wayle.settings",
 	},
-	float = true
+	float = true,
 })
 
 for i = 1, 5 do
