@@ -1,6 +1,0 @@
-hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprpaper & hypridle & hyprsunset &")
-	hl.exec_cmd("/home/damet/.cargo/bin/wayle panel start &")
-	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 20")
-	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-end)
