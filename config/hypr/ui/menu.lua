@@ -22,8 +22,10 @@ function M.show_menu(opts)
 	-- Write items to tmp file (avoids shell arg limits and blocking pipes)
 	local tmp = os.tmpname()
 	local f = io.open(tmp, "w")
-	f:write(table.concat(items, "\n"))
-	f:close()
+	if f then
+		f:write(table.concat(items, "\n"))
+		f:close()
+	end
 
 	if backend == "rofi" then
 		hl.exec_cmd("rofi -dmenu -p '" .. title .. "' -i < '" .. tmp .. "' &")
