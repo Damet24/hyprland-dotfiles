@@ -29,6 +29,16 @@ hl.window_rule({
 	float = true,
 })
 
+hl.window_rule({
+	name = "bitwarden-login-float",
+	match = {
+		class = "^app\\.zen_browser\\.zen$",
+		title = "^(Extension:.*Bitwarden.*)$",
+	},
+	float = true,
+	center = true,
+})
+
 for i = 1, 5 do
 	hl.workspace_rule({
 		workspace = tostring(i),
