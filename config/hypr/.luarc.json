@@ -1,5 +1,11 @@
 {
 	"workspace": {
 		"library": ["/usr/share/hypr/stubs"]
-	}
+	},
+    "diagnostics.globals": [
+        "editor",
+        "terminal",
+        "fileManager",
+        "menu"
+    ]
 }
