@@ -53,13 +53,6 @@ local keys = {
 	-- Special workspace
 	{
 		key = "S",
-		mod = mod,
-		action = hl.dsp.workspace.toggle_special("magic"),
-		desc = "Toggle special workspace",
-		category = "Workspace",
-	},
-	{
-		key = "S",
 		mods = { mod, "SHIFT" },
 		action = hl.dsp.window.move({ workspace = "special:magic" }),
 		desc = "Move window to special workspace",
