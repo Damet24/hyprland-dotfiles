@@ -1,4 +1,5 @@
 local path = "$HOME/Pictures/Screenshots"
+local programs = require("config/programs")
 
 return {
 	name = "screenshots",
@@ -25,6 +26,17 @@ return {
 			mod = "SUPER",
 			action = hl.dsp.exec_cmd("hyprshot -m region -o " .. path),
 			desc = "Screenshot region",
+			category = "Screenshots",
+		},
+		{
+			key = "F9",
+			mod = "SUPER",
+			action = hl.dsp.exec_cmd(
+				'grim -g "$(slurp)" /tmp/qrcode && wl-copy $(zbarimg /tmp/qrcode -q --raw) -p && '
+					.. programs.browser
+					.. " $(wl-paste -p)"
+			),
+			desc = "Scna a qr code from screenshot",
 			category = "Screenshots",
 		},
 	},
