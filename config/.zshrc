@@ -56,4 +56,19 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias dots=~/dotfiles/scripts/dotfiles.sh
 alias gcl=~/dotfiles/scripts/create_git_repo_link
 
+venv() {
+    local dir
+    dir=$(pwd)
+
+    while [ "$dir" != "/" ]; do
+        if [ -f "$dir/venv/bin/activate" ]; then
+            source "$dir/venv/bin/activate"
+            return
+        fi
+        dir=$(dirname "$dir")
+    done
+
+    echo "No venv found in parent directories"
+}
+
 . "$HOME/.local/share/../bin/env"
