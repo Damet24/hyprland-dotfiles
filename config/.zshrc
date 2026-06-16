@@ -7,6 +7,8 @@ alias lla='ls -la'
 alias lt='ls --tree'
 alias dtem='cd $(mktemp -d)'
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # fnm
 FNM_PATH="/home/damet/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
@@ -53,3 +55,5 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 alias dots=~/dotfiles/scripts/dotfiles.sh
 
+
+. "$HOME/.local/share/../bin/env"

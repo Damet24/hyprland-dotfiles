@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ACTION="$1"
+REPO_PATH="${2:-}"
+NAME="${3:-}"
+
+DESKTOP_DIR="$HOME/.local/share/applications"
+
+create() {
+    if [ -z "$REPO_PATH" ] || [ -z "$NAME" ]; then
+        echo "Uso: $0 create <repo_path> <nombre>"
+        exit 1
+    fi
+
+    REPO_PATH="$(realpath "$REPO_PATH")"
+
+    cat > "$DESKTOP_DIR/$NAME.desktop" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=$NAME
+Comment=Repositorio Git
+Exec=ghostty -e bash -lc 'cd "$REPO_PATH" && lazygit'
+Icon=git
+Terminal=false
+Categories=Development;
+EOF
+
+    chmod +x "$DESKTOP_DIR/$NAME.desktop"
+
+    echo "Creado: $DESKTOP_DIR/$NAME.desktop"
+}
+
+remove() {
+    if [ -z "$NAME" ]; then
+        echo "Uso: $0 remove <nombre>"
+        exit 1
+    fi
+
+    rm -f "$DESKTOP_DIR/$NAME.desktop"
+    echo "Eliminado: $NAME.desktop"
+}
+
+case "$ACTION" in
+    create)
+        create
+        ;;
+    remove)
+        NAME="$REPO_PATH"
+        remove
+        ;;
+    *)
+        echo "Uso:"
+        echo "  $0 create <repo_path> <nombre>"
+        echo "  $0 remove <nombre>"
+        exit 1
+        ;;
+esac
