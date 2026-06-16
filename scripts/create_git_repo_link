@@ -43,6 +43,23 @@ remove() {
     echo "Eliminado: $NAME.desktop"
 }
 
+list() {
+    echo "Apps disponibles en $DESKTOP_DIR:"
+    echo
+
+    for file in "$DESKTOP_DIR"/*.desktop; do
+        [ -e "$file" ] || continue
+
+        name=$(grep -m1 "^Name=" "$file" | cut -d= -f2-)
+        exec_cmd=$(grep -m1 "^Exec=" "$file" | cut -d= -f2-)
+
+        echo "📦 ${file##*/}"
+        echo "   Name: $name"
+        echo "   Exec: $exec_cmd"
+        echo
+    done
+}
+
 case "$ACTION" in
     create)
         create
@@ -51,10 +68,14 @@ case "$ACTION" in
         NAME="$REPO_PATH"
         remove
         ;;
+    list)
+        list
+        ;;
     *)
         echo "Uso:"
         echo "  $0 create <repo_path> <nombre>"
         echo "  $0 remove <nombre>"
+        echo "  $0 list"
         exit 1
         ;;
 esac
