@@ -54,6 +54,6 @@ bindkey '^[OD' backward-word
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 alias dots=~/dotfiles/scripts/dotfiles.sh
-
+alias gcl=~/dotfiles/scripts/create_git_repo_link
 
 . "$HOME/.local/share/../bin/env"

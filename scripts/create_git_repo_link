@@ -23,7 +23,7 @@ Type=Application
 Name=$NAME
 Comment=Repositorio Git
 Exec=ghostty -e bash -lc 'cd "$REPO_PATH" && lazygit'
-Icon=git
+Icon=preferences-desktop-display
 Terminal=false
 Categories=Development;
 EOF
